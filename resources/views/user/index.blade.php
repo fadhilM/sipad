@@ -61,13 +61,7 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->no_telp}}</td>
                             <td>{{$user->alamat}}</td>
-                            @if ($user->hak_akses == 2 )
-                            <td>Admin</td>  
-                            @elseif($user->hak_akses == 1)
-                            <td>Manager</td>
-                            @else
-                            <td>Operator</td>
-                            @endif
+                            <td>{{$user->hak_akses->hak_akses}}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{route('user.show',$user->id_user)}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>

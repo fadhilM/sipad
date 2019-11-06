@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','alamat','no_telp','hak_akses'
+        'name', 'email', 'password','alamat','no_telp','id_hak_akses'
     ];
 
     /**
@@ -38,8 +38,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function hak_akses(){
+        return $this->belongsTo('App\hak_akses','id_hak_akses');
+    }
+    
     public function surat()
     {
-        return $this->hasMany('App\surat', 'id_surat', 'id_surat');
+        return $this->hasMany('App\surat', 'id_user','id_surat');
     }
+
 }

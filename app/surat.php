@@ -15,11 +15,11 @@ class surat extends Model
     
     public function user()
     {
-        return $this->belongsTo('App\User','id_user','id_user');
+        return $this->belongsTo('App\User','id_user');
     }
     
     public function category()
     {
-        return $this->belongsTo('App\category','id_category','id_category');
+        return $this->belongsTo('App\category','id_category');
     }
 }

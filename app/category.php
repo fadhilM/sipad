@@ -17,6 +17,6 @@ class category extends Model
 
     public function surat()
     {
-        return $this->hasMany('App\surat', 'id_surat', 'id_surat');
+        return $this->hasMany('App\surat', 'id_category');
     }
 }

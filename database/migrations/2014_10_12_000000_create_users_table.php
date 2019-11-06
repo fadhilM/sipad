@@ -19,9 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('alamat')->length(40);
             $table->string('no_telp')->length(13);
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('dir')->nullable();
+            $table->string('filename')->nullable()->length(50);
             $table->string('password');
-            $table->tinyInteger('hak_akses')->default(0);
+            $table->unsignedBigInteger('id_hak_akses')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

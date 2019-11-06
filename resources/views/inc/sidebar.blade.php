@@ -14,12 +14,12 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="#">
+        <li>
+          <a href="{{route("home")}}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        @if(Auth::user()->hak_akses==2)
+        @if(Auth::user()->id_hak_akses==3)
           <li class="treeview">
             <a href="#">
               <i class="fa fa-users"></i> <span>User</span>
@@ -34,7 +34,7 @@
             </ul>
           </li>
         @endif
-        @if(Auth::user()->hak_akses!=1)
+        @if(Auth::user()->id_hak_akses!=1)
           <li class="treeview">
             <a href="#">
               <i class="fa fa-files-o"></i>
@@ -60,7 +60,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('suratMasuk.index')}}"><i class="fa fa-circle-o"></i>Lihat Surat Masuk</a></li>
-            @if(Auth::user()->hak_akses!=1)
+            @if(Auth::user()->id_hak_akses!=2)
             <li><a href="{{route('suratMasuk.create')}}"><i class="fa fa-circle-o"></i>Register Surat Masuk</a></li>
             @endif
           </ul>
@@ -74,7 +74,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('suratKeluar.index')}}"><i class="fa fa-circle-o"></i>Lihat Surat Keluar</a></li>
-            @if(Auth::user()->hak_akses!=1)
+            @if(Auth::user()->id_hak_akses!=2)
             <li><a href="{{route('suratKeluar.create')}}"><i class="fa fa-circle-o"></i>Register Surat Keluar</a></li>
             @endif
           </ul>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\surat;
 use App\category;
+use App\User;
+use Auth;
 use Exception;
 use Storage;
 
@@ -18,8 +20,21 @@ class SuratKeluarController extends Controller
     public function index()
     {
         try{
-            $surat_keluar=surat::all()->where('delete','!=','1')
-                                     ->where('tipe',1);
+            $user = User::where('id_user', Auth::user()->id_user)->with('hak_akses')->first();
+            $where = [
+                ['delete', '<>', 1],
+                ['tipe', '=', 1]
+            ];
+            if ($user->hak_akses->hak_akses!='Operator') {
+                $surat_keluar = surat::with('user')
+                    ->where($where)
+                    ->get();
+                
+            } else {
+                $surat_keluar = surat::where($where)->get();
+            }
+            
+            
             return view('suratKeluar.index',['surat_keluar'=>$surat_keluar]);
         }catch(Exception $e){
             return view('suratKeluar.index')->with('error',$e->getMessage());

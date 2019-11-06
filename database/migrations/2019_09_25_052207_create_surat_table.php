@@ -23,12 +23,12 @@ class CreateSuratTable extends Migration
             $table->timestamps();
             $table->string('dir')->nullable();
             $table->string('filename')->nullable()->length(50);
-            $table->unsignedbigInteger('id_user');
-            $table->unsignedbigInteger('id_category');
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+            $table->unsignedbigInteger('id_user')->nullable();
+            $table->unsignedbigInteger('id_category')->nullable();
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('set null');
             $table->unsignedTinyInteger('tipe')->length('1');
-            $table->foreign('id_category')->references('id_category')->on('categories')->onDelete('cascade');
-            $table->unsignedTinyInteger('delete')->length('1')->nullable();
+            $table->foreign('id_category')->references('id_category')->on('categories')->onDelete('set null');
+            $table->unsignedTinyInteger('delete')->length('1')->default(0);
             
             
         });

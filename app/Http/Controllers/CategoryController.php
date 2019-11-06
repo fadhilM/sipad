@@ -44,9 +44,9 @@ class CategoryController extends Controller
             $category=category::create([
                 'nama_kategori' => $request['nama_kategori']
             ]);
-            return redirect('category.create')->with('message','Data Berhasil Dibuat');
+            return redirect()->route('category.create')->with('message','Data Berhasil Dibuat');
         }catch(Exception $e){
-            return redirect('category.create')->with('error',$e->getMessage());
+            return redirect()->route('category.create')->with('error',$e->getMessage());
         }
     }
 

@@ -3,7 +3,7 @@
 @section('content_header')
 <section class="content-header">
     <h1>
-        Data Surat Keluar
+        Data Keluar
         <small>Index Surat Keluar</small>
     </h1>
     <ol class="breadcrumb">
@@ -50,23 +50,29 @@
                             <th>Pengirim</th>
                             <th>Penerima</th>
                             <th>Tanggal Registrasi</th>
+                            @if (auth::user()->hak_akses->hak_akses!='Operator')
+                               <th>Registrator</th> 
+                            @endif
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($surat_keluar as $sk)
+                        @foreach ($surat_keluar as $sm)
                         <tr>
-                            <td>{{$sk->no_surat}}</td>
-                            <td>{{$sk->tujuan}}</td>
-                            <td>{{$sk->dari}}</td>
-                            <td>{{$sk->untuk}}</td>
-                            <td>{{$sk->created_at->format('d, M Y')}}</td>
+                            <td>{{$sm->no_surat}}</td>
+                            <td>{{$sm->tujuan}}</td>
+                            <td>{{$sm->dari}}</td>
+                            <td>{{$sm->untuk}}</td>
+                            <td>{{$sm->created_at->format('d, M Y')}}</td>
+                            @if (auth::user()->hak_akses->hak_akses!='Operator')
+                               <td>{{$sm->user->name}}</td> 
+                            @endif
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{route('suratKeluar.show',$sk->id_surat)}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
-                                    @if(Auth::user()->hak_akses!=1)
-                                    <a href="{{route('suratKeluar.edit',$sk->id_surat)}}" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="{{route('suratKeluar.delete',$sk->id_surat)}}" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <a href="{{route('suratMasuk.show',$sm->id_surat)}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                    @if(Auth::user()->id_hak_akses!=1)
+                                    <a href="{{route('suratMasuk.edit',$sm->id_surat)}}" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="{{route('suratMasuk.delete',$sm->id_surat)}}" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
                                     @endif
                                 </div>
                             </td>
@@ -80,6 +86,9 @@
                             <th>Pengirim</th>
                             <th>Penerima</th>
                             <th>Tanggal Registrasi</th>
+                            @if (auth::user()->hak_akses->hak_akses!='Operator')
+                               <th>Registrator</th> 
+                            @endif
                             <th>Aksi</th>
                         </tr>
                     </tfoot>

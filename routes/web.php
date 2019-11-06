@@ -21,15 +21,17 @@ Route::get('coba', function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
-    Route::middleware(['CheckRole:2'])->group(function() {
+    // Route::middleware(['CheckRole:2'])->group(function() {
         Route::get('/user','UserController@index')->name('user.index');
         Route::get('/user/edit/{id_user}','UserController@edit')->name('user.edit');
         Route::get('/user/show/{id_user}','UserController@show')->name('user.show');
         Route::get('/user/delete/{id_user}', 'UserController@destroy')->name('user.delete');
         Route::match(['put', 'patch'],'user/update/{id_user}','UserController@update')->name('user.update');
-    });
+    // });
+
+    Route::put('user/show/{id_user}/password','UserController@ubahPassword')->name('user.ubahPassword');
     
     Route::resource('category','CategoryController');
     Route::get('/category/delete/{id_category}', 'CategoryController@destroy')->name('kategori.delete');
@@ -45,4 +47,4 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/home', 'HomeController@index')->name('home');
     
-});
+// });

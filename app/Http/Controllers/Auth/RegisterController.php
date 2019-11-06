@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\hak_akses;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,7 +40,12 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
+    }
+
+    public function showRegistrationForm(){
+        $hak_akses = hak_akses::get();
+        return view('auth.register')->with('hak_akses',$hak_akses);
     }
 
     /**
@@ -54,7 +60,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:30'],
             'alamat' => ['required','string', 'max:40'],
             'no_telp' => ['required','numeric', 'digits_between:10,13'],
-            'hak_akses' => ['required'],
+            'id_hak_akses' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
@@ -73,7 +79,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'alamat' =>$data['alamat'],
             'no_telp' =>$data['no_telp'],
-            'hak_akses' =>$data['hak_akses'],
+            'id_hak_akses' =>$data['id_hak_akses'],
             'password' => Hash::make($data['password']),
         ]);
     }
