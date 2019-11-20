@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{asset('AdminLte/dist/css/skins/skin-green.min.css')}}">
   <!-- Select -->
   <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet">
- 
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -78,6 +78,8 @@
 <script src="{{asset('AdminLte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- Select -->
 <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+<!-- ChartJs -->
+<script src="{{asset('AdminLte/bower_components/chart.js/Chart.js')}}"></script>
 @yield('script')
 <script>
   $(function () {
